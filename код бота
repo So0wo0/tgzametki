@@ -1,7 +1,7 @@
 python
 import telebot
 
-bot = telebot.TeleBot("YOUR_TELEGRAM_BOT_TOKEN")
+bot = telebot.TeleBot("6632806017:AAFHyLT-QAICBa7qP9VlBoNz_LmwToBZkoo")
 notes = {}
 
 @bot.message_handler(commands=['add_note'])
