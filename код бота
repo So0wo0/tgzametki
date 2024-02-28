@@ -1,7 +1,7 @@
 python
 import telebot
 
-bot = telebot.TeleBot("6632806017:AAFHyLT-QAICBa7qP9VlBoNz_LmwToBZkoo")
+bot = telebot.TeleBot("7045930576:AAHu3fGjqarLXAFwv0rRxxtERbnsItopf4U")
 notes = {}
 
 @bot.message_handler(commands=['add_note'])
