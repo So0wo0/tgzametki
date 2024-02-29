@@ -28,3 +28,45 @@ def find_note(message):
         bot.reply_to(message, "У Вас пока нет заметок.")
 
 bot.polling()
+
+àaàaaaaaaa
+
+
+import telebot
+
+notes = {}
+
+TOKEN = '7045930576:AAHu3fGjqarLXAFwv0rRxxtERbnsItopf4U'
+
+bot = telebot.TeleBot(TOKEN)
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    chat_id = message.chat.id
+    if chat_id not in notes:
+        notes[chat_id] = []
+    bot.send_message(chat_id, "Привет! Я бот для создания и поиска заметок. Используй /add для добавления заметки и /search для поиска.")
+
+@bot.message_handler(commands=['add'])
+def add_note(message):
+    chat_id = message.chat.id
+    bot.send_message(chat_id, "Введите заметку:")
+    bot.register_next_step_handler(message, save_note)
+
+def save_note(message):
+    chat_id = message.chat.id
+    note = message.text
+    notes[chat_id].append(note)
+    bot.send_message(chat_id, "Заметка успешно добавлена!")
+
+@bot.message_handler(commands=['search'])
+def search_notes(message):
+    chat_id = message.chat.id
+    if chat_id in notes and len(notes[chat_id]) > 0:
+        bot.send_message(chat_id, "Ваши заметки:")
+        for note in notes[chat_id]:
+            bot.send_message(chat_id, note)
+    else:
+        bot.send_message(chat_id, "У вас пока нет заметок.")
+
+bot.polling()
